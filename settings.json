@@ -2193,6 +2193,17 @@
     "debugExceptionWidget.background": "#012d2080",
     "debugExceptionWidget.border": "#f5aaff70"
   },
+  "indentRainbow.colors": [
+    "rgba(24, 78, 119,0.15)",
+    "rgba(30, 96, 145,0.15)",
+    "rgba(26, 117, 159, 0.15)",
+    "rgba(22, 138, 173,0.15)",
+    "rgba(52, 160, 164,0.15)",
+    "rgba(82, 182, 154,0.15)",
+    "rgba(82, 182, 154,0.1)",
+    "rgba(82, 182, 154,0.05)",
+    "rgba(82, 182, 154,0.025)"
+  ],
   "editor.fontFamily": "Fira Code Medium",
   "editor.fontLigatures": true,
   "editor.fontSize": 12,
