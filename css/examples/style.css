@@ -1,0 +1,95 @@
+/* CSS Variables */
+:root {
+    --primary-color: #4caf50;
+    --secondary-color: #8bc34a;
+    --font-size: 16px;
+}
+
+/* Universal Selector */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Browser specific prefixes */
+    -o-object-fit: cover;
+    -webkit-background-clip: border-box;
+    -moz-text-decoration-color: #8bc34a;
+}
+
+/* Type Selector */
+body {
+    font-family: Arial, sans-serif;
+    font-size: var(--font-size);
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Class Selector */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ID Selector */
+#header {
+    background-color: var(--secondary-color);
+    padding: 10px;
+    text-align: center;
+}
+
+/* Descendant Selector */
+.container p {
+    line-height: 1.6;
+}
+
+/* Grouping Selector */
+h1, h2, h3 {
+    margin-bottom: 10px;
+}
+
+/* Pseudo-class Selector */
+a:hover {
+    color: yellow;
+    text-decoration: underline !important;
+}
+
+/* Pseudo-element Selector */
+p::first-line {
+    font-weight: bold;
+}
+
+/* Attribute Selector */
+input[type="text"] {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+/* Child Selector */
+ul > li {
+    list-style-type: square;
+}
+
+/* Adjacent Sibling Selector */
+h1 + p {
+    font-style: italic;
+}
+
+/* General Sibling Selector */
+h1 ~ p {
+    color: lightgray;
+}
+
+/* Media Query */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container:has(p) {
+        padding: 10px;
+    }
+    .container:last-child {
+        padding: 10px;
+    }
+}

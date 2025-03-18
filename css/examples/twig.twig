@@ -1,0 +1,124 @@
+{% extends "base.twig" %}
+{% block content %}
+	{# Page Header Banner #}
+	<div class="relative w-full h-[295px] lg:h-[636px]">
+		{% if post.thumbnail %}
+			<div class="flex items-center justify-center w-full h-full overflow-hidden">
+				{% set banner_image = get_image(post.thumbnail.id) %}
+				<img src="{{banner_image.src}}" alt="{{banner_image.alt}}" class="object-cover object-center w-full h-full min-w-full min-h-full max-h-none max-w-none">
+			</div>
+			<div class="absolute inset-0 flex items-end justify-start bg-opacity-70 bg-vista-navy global-padding">
+			{% else %}
+				<div class="flex items-end justify-start w-full h-full bg-vista-navy global-padding">
+				{% endif %}
+				<div class="flex flex-row items-center w-full mx-auto max-w-content mb-5 lg:mb-[50px]">
+					{% set service_icons = ['oral-surgery', 'implants', 'endodontics', 'periodontics', 'sedation', 'sleep-solutions' ] %}
+					{% if post.slug in service_icons %}
+						{% include ("svg/service-icons/" ~ post.slug ~ ".svg.twig") ignore missing with { 'class': 'h-[30px] lg:h-[60px] w-auto mr-[15px] lg:mr-[30px]' } %}
+					{% endif %}
+					{% for crumb in breadcrumbs %}
+					{% if crumb.name == "Specialties" %}
+					<span class="text-white text-[21px] lg:text-[45px] {{ loop.last ? 'font-[700]' : 'font-[300]' }} !no-underline">{{ crumb.name }}</span>
+					{% else %}
+						<a href="{{ crumb.link }}" title="{{ crumb.name }}" aria-label="{{ crumb.name }}" class="text-white text-[21px] lg:text-[45px] {{ loop.last ? 'font-[700]' : 'font-[300]' }} !no-underline">{{ crumb.name }}</a>
+					{% endif %}
+						{% if not loop.last %}
+							<span class="text-white text-[21px] lg:text-[45px] font-[300] mx-2">></span>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		<div aria-hidden="true" class="flex flex-row flex-nowrap h-[5px] max-w-content mb-[33px] lg:mb-[75px] mx-auto">
+			<span class="w-1/6 h-full bg-vista-dark-blue"></span>
+			<span class="w-1/6 h-full bg-vista-light-blue"></span>
+			<span class="w-1/6 h-full bg-vista-green"></span>
+			<span class="w-1/6 h-full bg-vista-yellow"></span>
+			<span class="w-1/6 h-full bg-vista-orange"></span>
+			<span class="w-1/6 h-full bg-vista-red"></span>
+		</div>
+
+
+		<div
+			class="prose has-global-padding prose-p:text-[var(--block-text-color)] prose-headings:text-[var(--block-text-color)] lg:prose-lg page-content mb-[30px] lg:mb-[115px]">
+			{# Grid for Content and Sidebar #}
+			<div
+				class="grid grid-cols-1 xl:grid-cols-[1fr_460px] gap-x-[64px] gap-y-[25px] max-w-content mx-auto">
+				{# Post Content/Blocks #}
+				<section class="[&>*:first-child]:mt-0">
+					{{ post.content }}
+				</section>
+				{# Sidebar #}
+				<section class="sidebar prose-h2:text-[26px] lg:prose-h2:text-[35px] prose-h3:text-[19px] lg:prose-h3:text-[26px] ">
+					<div
+						class="w-full bg-[#F7F7F7] px-7 lg:px-9 py-10 lg:py-12 rounded-[10px] flex flex-col gap-y-14 lg:gap-y-16">
+						{# Locations #}
+						<div class="max-lg:prose-p:text-[12px] [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+							<h2>Our Vista Locations</h2>
+							{# All services #}
+							{% set services = { 
+								'oral-surgery': 'bg-vista-dark-blue',
+								'implants': 'bg-vista-light-blue',
+								'endodontics': 'bg-vista-green',
+								'periodontics': 'bg-vista-yellow',
+								'sedation': 'bg-vista-orange', 
+								'sleep-solutions': 'bg-vista-red',  
+							} %}
+							{% for location in locations %}
+								<a href="{{ location.link }}" title="{{location.title}}" target="_self" aria-label="{{location.title}}" class="inline-block w-fit">
+									<h3>
+										{{location.title}}
+									</h3>
+								</a>
+								{% for service in location.services %}
+									<div class="flex items-center mb-1 gap-x-4">
+										<div class="{{ services[service] }} w-10 h-10 lg:w-[50px] lg:h-[50px] flex items-center justify-center">
+											{% include ("svg/service-icons/" ~ service ~ ".svg.twig") ignore missing with { 'class': 'object-contain max-h-[80%] max-w-[65%] h-full' } %}
+										</div>
+										<p class="capitalize !m-0 !font-[500]">{{ service|replace({'-': ' '}) }}</p>
+									</div>
+								{% endfor %}
+								<a class="my-5 transition-colors duration-200 red-btn w-fit" href="{{ location.appointment_booking_link.url }}" title="Book Appointment" target="{{ location.appointment_booking_link.target }}" aria-label="Book Appointment">Book Appointment</a>
+							{% endfor %}
+						</div>
+						{# Contact Form #}
+						{# {% if post.meta.form_selection != 'none' %}
+						{% set form_selection = post.meta.form_selection ? post.meta.form_selection : 'general' %}
+							<div class="[&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+								<h2 class="prose-h2:text-[24px] prose-h2:lg:text-[32px] !mb-2">Have a Question?</h2>
+								<div class="sidebar-form">
+									{% include("resources/views/partials/liine-forms/" ~ form_selection ~ '.twig')  %}
+									{% apply shortcodes %}
+									[gravityform id="1" title="false" description="false"]
+									{% endapply %}
+								</div>
+							</div>
+						{% endif %} #}
+						{# Reviews #}
+						{% if testimonial %}
+							<div class="[&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+								<h2>Reviews</h2>
+								<div class="flex-col items-center italic text-start text-vista-navy">
+
+									<div class="flex flex-row w-full gap-1 items-center h-[25px]">
+										{% for star in 1..testimonial.rating|string_to_int %}
+											<div class="w-auto h-full aspect-square">
+												{% include "resources/views/svg/vista-review-star.svg" with {'class': 'h-full w-full'} %}
+											</div>
+										{% endfor %}
+									</div>
+
+									<p class="quote !mb-0">"{{testimonial.quote}}"</p>
+									<p class="!mt-0">
+										<strong>&mdash;
+											{{testimonial.title}}</strong>
+									</p>
+
+								</div>
+							</div>
+						{% endif %}
+					</div>
+				</section>
+			</div>
+		</div>
+	{% endblock %}
