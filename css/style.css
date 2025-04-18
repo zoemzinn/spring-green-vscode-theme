@@ -17,6 +17,11 @@
   color: #f5aaff;
 }
 
+[class^='bracket-highlighting'],
+[class^='bracket-highlighting'] {
+  color: #d94fc4 !important;
+}
+
 /* Activity Bar Background Gradient */
 .monaco-workbench .activitybar > .content {
   background-image: linear-gradient(to bottom, #012c1f 30%, #000c10e8);
