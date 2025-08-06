@@ -1,0 +1,78 @@
+{
+  "article": [],
+  "blog": [],
+  "brand": [],
+  "collection": [],
+  "company": [],
+  "company_location": [],
+  "location": [
+    {
+      "key": "phone_number_format",
+      "namespace": "custom",
+      "name": "Phone Number Format",
+      "description": "Enter the location's phone number in the desired format",
+      "type": {
+        "name": "single_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "hours",
+      "namespace": "custom",
+      "name": "Hours",
+      "description": "Business hours for this location",
+      "type": {
+        "name": "single_line_text_field",
+        "category": "TEXT"
+      }
+    }
+  ],
+  "market": [],
+  "order": [],
+  "page": [
+    {
+      "key": "parent_page",
+      "namespace": "custom",
+      "name": "Parent Page",
+      "description": "The parent page for this page for breadcrumb purposes.",
+      "type": {
+        "name": "page_reference",
+        "category": "REFERENCE"
+      }
+    }
+  ],
+  "product": [
+    {
+      "key": "color-pattern",
+      "namespace": "shopify",
+      "name": "Color",
+      "description": "Defines the primary color or pattern, such as blue or striped",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "display-technology",
+      "namespace": "shopify",
+      "name": "Display technology",
+      "description": "Defines the type of screen technology used in a product, e.g. LED, e-ink",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "orientation",
+      "namespace": "shopify",
+      "name": "Orientation",
+      "description": "Specifies the product's intended positioning, e.g. horizontal, vertical",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    }
+  ],
+  "variant": [],
+  "shop": []
+}
